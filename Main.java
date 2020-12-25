@@ -2,33 +2,39 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            File myObj = new File("D:\\Java\\test.txt");
-            Scanner myReader = new Scanner(myObj);
-            History history = new History();
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] s = data.split(" ");
-                if(s.length == 2 && s[0].equals("Driver")) {
-                    history.addDriver(s[1]);
+        if(args.length > 0) {
+            try {
+                File myObj = new File(args[0]);
+                if(!myObj.exists()) {
+                    System.out.println("File doesn't exit!");
                 }
-                if(s.length == 5 && s[0].equals("Trip")) {
-                    history.addTrip(s[1], s[2], s[3], Float.parseFloat(s[4]));
+                Scanner myReader = new Scanner(myObj);
+                History history = new History();
+                while (myReader.hasNextLine()) {
+                    String data = myReader.nextLine();
+                    String[] s = data.split(" ");
+                    if(s.length == 2 && s[0].equals("Driver")) {
+                        history.addDriver(s[1]);
+                    }
+                    if(s.length == 5 && s[0].equals("Trip")) {
+                        history.addTrip(s[1], s[2], s[3], Float.parseFloat(s[4]));
+                    }
                 }
+                myReader.close();
+                history.result();
+            } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
             }
-            myReader.close();
-            history.result();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
         }
     }
 }
