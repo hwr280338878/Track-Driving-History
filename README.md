@@ -1,6 +1,7 @@
 # Track-Driving-History
 1. Design
 
+UML diagram
 At first, I was thinking use only one class(DriveHistory) include some methods, such as addDriver(), addTrip(), getResult() etc. to get the output. But after carefully thinking, I decide to make a Object Orented Design to make more classes like Driver, Trip, and History instead of using only one class, OOD makes the codes modularity for easier troubleshooting, flexibility through polymorphism, and effective problem solving.
 
 
@@ -16,3 +17,7 @@ In the history class, initialize a hashmap to store the driver's name and trips,
 
 Unit test, TDD, Line coverage/branch coverage
 Wrote some unit test cases and based on test one thing at a time in isolation, follow the AAA Rule: Arrange, Act, Assert, test the entire spectrum, and improve the line and branch coverage;
+
+4.How to run the app
+
+Put your input file in the app root directory, and first use command "javac Main.java" to build, then use command "java Main.java input.txt" to run the app.
